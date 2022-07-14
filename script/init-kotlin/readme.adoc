@@ -1,0 +1,8 @@
+
+= init kotlin
+
+[source,shell script]
+----
+curl -sL https://github.com/cc332030/kotlin/raw/main/script/init-kotlin/init-kotlin.sh | sh
+
+----
