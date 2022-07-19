@@ -3,8 +3,7 @@
 set -e
 
 downUrl=$(curl -s https://api.github.com/repos/JetBrains/kotlin/releases/latest |
-            awk '/browser_download_url/' |
-            awk -F\" '/compiler/ {print $4}')
+            awk -F\" '/browser_download_url/ && /compiler/ {print $4}')
 
 echo "downUrl: $downUrl"
 
