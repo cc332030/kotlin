@@ -3,6 +3,25 @@
 
 [source,kotlin]
 ----
+inline fun <reified T> T.log(): Logger {
+    if (T::class.isCompanion) {
+        return LoggerFactory.getLogger(T::class.java.enclosingClass)
+    }
+    return LoggerFactory.getLogger(T::class.java)
+}
+
+class LogWithFactoryFunction {
+
+    val log = log()
+
+    fun doSomething() {
+        logger.info("Hey from a factory function!")
+    }
+}
+----
+
+[source,kotlin]
+----
 class CLogger(clazz: Class<*>) {
 
   private val log = LoggerFactory.getLogger(clazz)
@@ -21,20 +40,4 @@ class Main {
 
 }
 
-----
-
-[source,kotlin]
-----
-inline fun <reified T> T.log(): Logger {
-    return LoggerFactory.getLogger(T::class.java)
-}
-
-class LogWithFactoryFunction {
-
-    val log = log()
-
-    fun doSomething() {
-        logger.info("Hey from a factory function!")
-    }
-}
 ----
