@@ -1,0 +1,40 @@
+
+= log
+
+[source,kotlin]
+----
+class CLogger(clazz: Class<*>) {
+
+  private val log = LoggerFactory.getLogger(clazz)
+
+  fun info(func: () -> String) {
+    log.info(func.invoke())
+  }
+  fun info(func: () -> String, e: Throwable) {
+    log.info(func.invoke(), e)
+  }
+}
+
+class Main {
+
+  private val log = CLogger(this.javaClass)
+
+}
+
+----
+
+[source,kotlin]
+----
+inline fun <reified T> T.log(): Logger {
+    return LoggerFactory.getLogger(T::class.java)
+}
+
+class LogWithFactoryFunction {
+
+    val log = log()
+
+    fun doSomething() {
+        logger.info("Hey from a factory function!")
+    }
+}
+----
