@@ -18,7 +18,7 @@
 
 |run
 |this
-|lambda
+|lambda 结果
 |是
 |对象配置并计算结果
 
@@ -36,7 +36,7 @@
 
 |run 非扩展函数
 |无
-|lambda
+|lambda 结果
 |否
 |在需要表达式的地方运行语句
 
